@@ -12,7 +12,7 @@ class CheckLogin
     public function handle($request, \Closure $next)
     {
         $route = '/' . strtolower(implode('/', [$request->module(), $request->controller(), $request->action()]));
-        if (in_array($route, $this->except) || session('user')) {
+        if (in_array($route, $this->except) || session('admin')) {
             return $next($request);
         } else {
             return redirect('admin/login/index');

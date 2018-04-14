@@ -15,7 +15,7 @@ class Base extends Controller
     {
         parent::initialize();
         $route = '/' . strtolower(implode('/', [Request::module(), Request::controller(), Request::action()]));
-        $id = session('user.id');
+        $id = session('admin.id');
         $group_id = Db::name('auth_group_access')->where('uid', $id)->find()['group_id'];
         $user_rules = Db::name('auth_group')->where('id', $group_id)->find()['rules'];
 //        $all_rules = Db::name('auth_rule')->whereIn('id', $user_rules)->select();
