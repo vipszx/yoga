@@ -1,0 +1,68 @@
+{layout name="layout" /}
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Simple Tables
+        <small>preview of simple tables</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Simple</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div id="app">
+                    <el-tree :data="data2" show-checkbox="" default-expand-all="" node-key="id" ref="tree"
+                             highlight-current :props="defaultProps" :default-checked-keys="[{$checked}]">>
+                    </el-tree>
+
+                    <div class="buttons">
+                        <el-button @click="getCheckedKeys">提交</el-button>
+                        <el-button @click="resetChecked">清空</el-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <script>
+        var Main = {
+            methods: {
+                getCheckedKeys() {
+                    var rule = this.$refs.tree.getCheckedKeys();
+                    $.post("{:url('admin/auth.group/editPermission', ['id'=>$id])}",{rule:rule},function(result){
+                        console.log(result);
+                        if (result.result == 'ok'){
+                            window.location.href="{:url('admin/auth.group/index')}";
+                        }
+                    });
+                },
+                resetChecked() {
+                    this.$refs.tree.setCheckedKeys([]);
+                }
+            },
+
+            data() {
+                return {
+                    data2: {php}echo $data;{/php},
+                    defaultProps: {
+                        children: 'children',
+                        label: 'label'
+                    }
+                };
+            }
+        };
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+    </script>

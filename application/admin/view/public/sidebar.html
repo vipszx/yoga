@@ -1,0 +1,31 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MAIN NAVIGATION</li>
+
+            {foreach $menu_list as $key => $value}
+            <li class="{$value['active'] ? 'active ' : ''} {notempty name="value._child"}treeview{/notempty}">
+                <a href="{:url($value['name'])}">
+                    <i class="fa {$value.icon}"></i> <span>{$value.title}</span>
+                    {notempty name="value._child"}
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    {/notempty}
+                </a>
+                {notempty name="value._child"}
+                <ul class="treeview-menu">
+                    {foreach $value['_child'] as $k => $v}
+                    <li class="{$v['active'] ? 'active' : ''}"><a href="{:url($v['name'])}"><i class="fa fa-circle-o"></i>{$v.title}</a></li>
+                    {/foreach}
+                </ul>
+                {/notempty}
+            </li>
+            {/foreach}
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

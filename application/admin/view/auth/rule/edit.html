@@ -1,0 +1,98 @@
+{layout name="layout" /}
+<section class="content-header">
+    <h1>
+        Simple Tables
+        <small>preview of simple tables</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Simple</li>
+    </ol>
+</section>
+<section class="content">
+    <section class="row">
+        <div class="col-md-6">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Horizontal Form</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" method="post" action="{:url('admin/auth.rule/update', ['id'=>$rule['id']])}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">上级菜单</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="pid">
+                                <option value="0" selected>顶级菜单</option>
+                                {foreach $menu as $value}
+                                <option value="{$value.id}" {eq name="rule['pid']" value="$value['id']" } selected {/eq}>
+                                    {php}echo str_repeat('├─', $value['level'] - 1);{/php}
+                                    {$value.title}
+                                </option>
+                                {/foreach}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">菜单名称</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="菜单名称" name="title" value="{$rule.title}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">链接</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="链接" name="name" value="{$rule.name}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">ICON</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="ICON" name="icon" value="{$rule.icon}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">排序</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="0" name="sort" value="{$rule.sort}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">描述</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="描述" name="remark" value="{$rule.remark}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">是否菜单</label>
+
+                            <div class="col-sm-10">
+                                <input type="checkbox" name="is_menu" {eq name="rule['is_menu']" value="1"}checked{/eq}> 是否菜单
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">是否开启</label>
+
+                            <div class="col-sm-10">
+                                <input type="checkbox" name="status" {eq name="rule['status']" value="1"}checked{/eq}> 是否开启
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-info pull-right">提交</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </section>
+</section>

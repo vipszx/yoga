@@ -1,0 +1,93 @@
+{layout name="layout" /}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Simple Tables
+        <small>preview of simple tables</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Simple</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <a href="{:url('admin/auth.admin/create')}">
+                        <button type="button" class="btn btn-primary btn-sm">添加用户</button>
+                    </a>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>#</th>
+                            <th>用户名</th>
+                            <th>昵称</th>
+                            <th>角色</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        {foreach $list as $key=>$vo}
+                        <tr>
+                            <td>{$key+1}</td>
+                            <td>{$vo.username}</td>
+                            <td>{$vo.nickname}</td>
+                            <td>{$vo.role}</td>
+                            <td>
+                                {$vo.status == 1 ? '正常' : '禁用'}
+                            </td>
+                            <td>
+                                <a href="{:url('admin/auth.admin/edit', ['id'=>$vo['id']])}">
+                                    <button type="button" class="btn btn-primary btn-xs">编辑</button>
+                                </a>
+                                <!--<button type="button" class="btn btn-danger btn-xs" data-toggle="modal"-->
+                                        <!--data-target="#modal-default">删除-->
+                                <!--</button>-->
+                                <a href="{:url('admin/auth.admin/delete', ['id'=>$vo['id']])}">
+                                    <button type="button" class="btn btn-danger btn-xs">删除</button>
+                                </a>
+                            </td>
+                        </tr>
+                        {/foreach}
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p>确认删除？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">确定</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</section>
