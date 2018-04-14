@@ -11,7 +11,7 @@
  Target Server Version : 50553
  File Encoding         : 65001
 
- Date: 14/04/2018 13:25:19
+ Date: 14/04/2018 16:53:47
 */
 
 SET NAMES utf8mb4;
@@ -29,13 +29,14 @@ CREATE TABLE `admin`  (
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0-禁用 1-正常',
   `create_time` int(11) NOT NULL COMMENT '注册时间',
   `delete_time` int(11) NULL DEFAULT NULL COMMENT '删除时间',
+  `remember_token` char(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台管理员表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (1, 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 1, NULL);
+INSERT INTO `admin` VALUES (1, 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 1, NULL, '15aa0edc34bd1292371adc8212f89288');
 
 -- ----------------------------
 -- Table structure for auth_group
